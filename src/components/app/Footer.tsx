@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 export interface FooterProps {
-    
+    activeTab: number;
+    setActiveTab: Function;
 }
  
-const Footer: React.FC<FooterProps> = () => {
-    const [activeTab, setActiveTab] = useState(1);
-
-    const _activeTab = (tabNumber: number) => {
-        setActiveTab(tabNumber);
-    }
-
+const Footer: React.FC<FooterProps> = ({activeTab,setActiveTab}) => {
+    
     return ( 
         <div className="footer">
             <div className="footer__items">
-                <div className={`footer__item ${activeTab === 0 ? "active" : ""}`} onClick={()=>_activeTab(0)}>
+                <div className={`footer__item ${activeTab === 0 ? "active" : ""}`} onClick={()=>setActiveTab(0)}>
                     <div className={`item__icon`}>
                         <i className='bx bxs-contact'></i>
                     </div>
@@ -22,7 +18,7 @@ const Footer: React.FC<FooterProps> = () => {
                         Contacts
                     </div>
                 </div>
-                <div className={`footer__item ${activeTab === 1 ? "active" : ""}`} onClick={()=>_activeTab(1)}>
+                <div className={`footer__item ${activeTab === 1 ? "active" : ""}`} onClick={()=>setActiveTab(1)}>
                     <div className={`item__icon`}>
                         <i className='bx bxs-group' ></i>
                     </div>
@@ -30,7 +26,7 @@ const Footer: React.FC<FooterProps> = () => {
                         Groups
                     </div>
                 </div>
-                <div className={`footer__item ${activeTab === 2 ? "active" : ""}`} onClick={()=>_activeTab(2)}>
+                <div className={`footer__item ${activeTab === 2 ? "active" : ""}`} onClick={()=>setActiveTab(2)}>
                     <div className={`item__icon`}>
                         <i className='bx bxs-star' ></i>
                     </div>

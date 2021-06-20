@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
+// import { IData } from '../App';
+import { IContact } from '../interface';
 
 
 export interface ContactItemProps {
-    
+    contact: IContact;
+    toggleFav:Function;
 }
  
-const ContactItem: React.FC<ContactItemProps> = () => {
-    const [isFav, setIsFav] = useState(false);
+const ContactItem: React.FC<ContactItemProps> = ({contact,toggleFav}) => {
+    const [isFav, setIsFav] = useState(contact.isFav);
 
     const toggleFavorite = () => {
         setIsFav(!isFav);
+        toggleFav(contact.id)
     }
 
     return ( 
-        <div className="contact__item" onClick={() => console.log("click a contact")}>
+        <div className="contact__item" >
             <div className="contact__star" onClick={toggleFavorite}>
             {isFav ? 
                 <i className='bx bxs-star' ></i>
@@ -24,17 +28,21 @@ const ContactItem: React.FC<ContactItemProps> = () => {
 
             <div className="contact__content">
                 <div className="content__pic">
-                    <div className="pic__text">C</div>
+                    <div className="pic__text">{contact.firstName[0].toUpperCase()}</div>
                 </div>
 
                 <div className="content__info">
                     <div className="info__name">
-                        Claire Groux
+                        {contact.firstName} {contact.lastName}
                     </div>
                     <small className="info__description">
-                        Amada de Luis
+                        Description here
                     </small>
                 </div>
+            </div>
+
+            <div className="show__datail__icon item__icon" onClick={() => console.log("click a contact")}>
+                <i className='bx bx-show' ></i>
             </div>
         </div>
     );

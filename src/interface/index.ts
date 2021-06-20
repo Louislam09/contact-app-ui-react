@@ -4,9 +4,13 @@ export interface IContact {
     lastName: string;
     phone: string;
     email: string;
-    address: string;
-    isFav: boolean
-    groups: Array<IGroup>;
+    address?: string;
+    isFav: boolean;
+    groups?: Array<IGroup>;
+}
+
+export interface IAllContact{
+    contacts: IContact[]
 }
 
 export interface IGroup {

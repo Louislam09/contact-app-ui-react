@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 export interface ContactDetailNavProps {
@@ -6,15 +6,27 @@ export interface ContactDetailNavProps {
 }
  
 const ContactDetailNav: React.FC<ContactDetailNavProps> = () => {
+    const [star, setStar] = useState(false);
+
+    const toggleStar = () => {
+        setStar(!star);
+    }
+
     return ( 
         <div className="contact__detail__nav">
             <div className="nav__background"></div>
             <div className="nav__actions">
-                <div className="nav__star nav__icon">
-                    <i className='bx bx-star' ></i>
+                <div className="nav__star nav__icon" onClick={toggleStar}>
+                    {star ? <i className='bx bxs-star'></i> : <i className='bx bx-star'></i>}
                 </div>
-                <div className="nav__option nav__icon">
-                    <i className='bx bx-dots-vertical-rounded' ></i>
+
+                <div className="nav__actions__right">
+                    <div className="nav__edit nav__icon">
+                        <i className='bx bxs-edit'></i>
+                    </div>
+                    <div className="nav__delete nav__icon">
+                        <i className='bx bx-trash'></i>
+                    </div>
                 </div>
             </div> 
        
