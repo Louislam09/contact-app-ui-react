@@ -12,6 +12,9 @@ export interface IContact {
 export interface IAllContact{
     contacts: IContact[]
 }
+export interface IAllGroup{
+    groups: IGroup[]
+}
 
 export interface IGroup {
     id: number;

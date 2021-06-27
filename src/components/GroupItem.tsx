@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { IData } from '../App';
-import { IContact } from '../interface';
+import {  IGroup } from '../interface';
 
 
-export interface ContactItemProps {
-    contact: IContact;
-    toggleFav:Function;
+export interface GroupItemProps {
+    group: IGroup;
 }
  
-const ContactItem: React.FC<ContactItemProps> = ({contact,toggleFav}) => {
-    const {id,firstName,lastName,isFav: _isFav,email} = contact;
-    const [isFav, setIsFav] = useState(_isFav);
+const GroupItem: React.FC<GroupItemProps> = ({group}) => {
+    const {id,name,members} = group;
+    const [isFav, setIsFav] = useState(false);
 
     const toggleFavorite = () => {
         setIsFav(!isFav);
-        toggleFav(id)
     }
 
     return ( 
@@ -29,23 +26,23 @@ const ContactItem: React.FC<ContactItemProps> = ({contact,toggleFav}) => {
             </div>
 
             <div className="contact__content">
-                <div className="content__pic">
-                    <div className="pic__text">{firstName[0].toUpperCase()}</div>
+                <div className="content__pic" style={{background: '#b6c0ff'}}>
+                    <div className="pic__text">{name[0].toUpperCase()}</div>
                 </div>
 
                 <div className="content__info">
                     <div className="info__name">
-                        {firstName} {lastName}
+                        {name} 
                     </div>
                     <small className="info__description">
-                       {email||"-"}
+                       {`Number of members: ${members.length}`}
                     </small>
                 </div>
             </div>
 
             <div className="show__datail__icon item__icon" >
                 <Link 
-                    to={`/contact/${id}`}
+                    to={`/group/${id}`}
                 >
                     <i className='bx bx-show' ></i>
                 </Link>
@@ -54,4 +51,4 @@ const ContactItem: React.FC<ContactItemProps> = ({contact,toggleFav}) => {
     );
 }
  
-export default ContactItem;
+export default GroupItem;

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { IContact } from '../interface';
 import ContactDetailNav from './contactDetail/ContactDetailNav'
 
-export interface COntactDetailsProps {
-    
+export interface ContactDetailsProps {
+    contact: IContact | any;
 }
  
-const ContactDetails: React.FC<COntactDetailsProps> = () => {
+const ContactDetails: React.FC<ContactDetailsProps> = ({ contact }) => {
+
     return ( 
         <div className="contact__details">
-            <ContactDetailNav />
+            <ContactDetailNav {...contact} />
 
             <div className="other__details">
                 <div className="info__item">
@@ -17,7 +20,7 @@ const ContactDetails: React.FC<COntactDetailsProps> = () => {
                     </div>
                     <div className="info__item__content">
                         <div className="info__label">Mobile</div>
-                        <div className="info__content">+1 829 (286) 7606 </div>
+                        <div className="info__content">{contact?.phone}</div>
                     </div>
                 </div>
                 
@@ -28,7 +31,7 @@ const ContactDetails: React.FC<COntactDetailsProps> = () => {
 
                     <div className="info__item__content">
                         <div className="info__label">Email</div>
-                        <div className="info__content">Louislam09@hotmail.com</div>
+                        <div className="info__content">{contact?.email}</div>
 
                     </div>
                 </div>
@@ -39,13 +42,15 @@ const ContactDetails: React.FC<COntactDetailsProps> = () => {
                     </div>
                     <div className="info__item__content">
                         <div className="info__label">Address</div>
-                        <div className="info__content">Santo Domingo Norte</div>
+                        <div className="info__content">{contact?.address}</div>
                     </div>
                 </div>
             </div>
         
             <div className="contact__detail__close">
-                <i className='bx bx-x'></i>
+                <Link to="/">
+                    <i className='bx bx-x'></i>
+                </Link>
             </div>
         </div>
     );

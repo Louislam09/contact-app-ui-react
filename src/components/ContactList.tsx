@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import ContactItem from './ContactItem'
-import { IContact } from '../interface';
+import { IContact, IGroup } from '../interface';
+import GroupItem from './GroupItem';
 // import { IData } from '../App';
 
 export interface ContactListProps {
-    data: IContact[];
+    data: IContact[] | IGroup[] | any;
     toggleFav: Function;
+    isGroup?: boolean;
 }
  
-const ContactList: React.FC<ContactListProps> = ({data,toggleFav}) => {
+const ContactList: React.FC<ContactListProps> = ({data,toggleFav,isGroup}) => {
     const [_data, setData] = useState(data)
 
     useEffect(() => {
@@ -20,7 +22,13 @@ const ContactList: React.FC<ContactListProps> = ({data,toggleFav}) => {
             {data.length ===0 && (
                 <div style={{fontSize: "3rem",width: "100%",height: "80vh",display: "flex",alignItems: "center",justifyContent:"center"}}>Empty List</div>
             )}
-            {_data.map(contact=> (
+
+
+            {isGroup &&_data.map((group: IGroup)=> (
+                <GroupItem key={group.id} group={group}  />
+            ))}
+
+            {!isGroup &&_data.map((contact: IContact) => (
                 <ContactItem key={contact.id} contact={contact} toggleFav={toggleFav} />
             ))}
         </div>

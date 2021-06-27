@@ -22,7 +22,7 @@ const ALL_CONTACT_QUERY = gql`
 /**
  * Hook To Get All Contacts
  */
-export const useGetContacts = (): {data:IAllContact,loading:boolean} => {
-	const {data,loading} = useQuery(ALL_CONTACT_QUERY);
-    return {data,loading}
+export const useGetContacts = (): {data:IAllContact,loading:boolean,refetch:any} => {
+	const {data,loading,refetch} = useQuery(ALL_CONTACT_QUERY);
+    return { data, loading,refetch }
 };
