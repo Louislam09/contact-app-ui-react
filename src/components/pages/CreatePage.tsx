@@ -5,7 +5,7 @@ interface CreatePageProps {
 
 }
 
-const CreatePage: React.FC<CreatePageProps> = ({}) => {
+const CreatePage: React.FC<CreatePageProps> = () => {
     return (
         <ContactForm />
     );

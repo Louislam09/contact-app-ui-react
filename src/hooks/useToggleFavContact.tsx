@@ -1,6 +1,5 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
+import {  gql, useMutation } from '@apollo/client';
 
-interface IContactInput {}
 
 const CONTACT_MUTATION = gql`
 	mutation toggleFav($id: ID!,$fav: Boolean!){

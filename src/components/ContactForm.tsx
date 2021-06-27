@@ -101,7 +101,7 @@ const ContactForm: React.FC<ContactFormProps> = () => {
 
     useEffect(() => {
         setGroupList(groups?.groups)
-    }, [loading]);
+    }, [loading,groups?.groups]);
 
     return (  
         <div className="contact__form__container">

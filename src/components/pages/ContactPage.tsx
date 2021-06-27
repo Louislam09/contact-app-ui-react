@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2';
 import { useGetContact } from '../../hooks/useGetContact';
 import { IContact } from '../../interface';
 import ContactDetails from '../ContactDetails';
@@ -9,7 +8,7 @@ interface ContactPageProps {
 
 }
 
-const ContactPage: React.FC<ContactPageProps> = ({}) => {
+const ContactPage: React.FC<ContactPageProps> = () => {
     let { id } = useParams<any>();
     const {data,loading} = useGetContact(id);
     const [contact, setContact] = useState<IContact>(data?.contact);

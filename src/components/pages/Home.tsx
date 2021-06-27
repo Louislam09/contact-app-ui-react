@@ -13,7 +13,7 @@ interface HomeProps {
 
 }
 
-const Home: React.FC<HomeProps> = ({}) => {
+const Home: React.FC<HomeProps> = () => {
 
     const {data, loading,refetch } = useGetContacts();
     const {data:_groups,loading: groupLoading} = useGetGroups()
@@ -45,10 +45,11 @@ const Home: React.FC<HomeProps> = ({}) => {
     }
     
     const onSearch = ({ currentTarget:{value} }: React.FormEvent<HTMLInputElement>) => {
-      if(activeTab == 1){
+      if(activeTab === 1){
         if(value){
           const searchFilter = _groups?.groups.filter((g: IGroup) => {
             if( g.name.toLowerCase().indexOf(value.toLowerCase()) !== -1 ) return g
+            return null
           })
           setAllContacts((cv:any)=> ({...cv,groups: searchFilter}))
         }else{
@@ -61,6 +62,7 @@ const Home: React.FC<HomeProps> = ({}) => {
               c.firstName.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
               c.lastName.toLowerCase().indexOf(value.toLowerCase()) !== -1
             ) return c
+            return null
           })
           setAllContacts((cv:any)=> ({...cv,contacts: searchFilter}))
         }else{
@@ -83,7 +85,7 @@ const Home: React.FC<HomeProps> = ({}) => {
 
     useEffect(()=>{
       refetch()
-    },[])
+    },[refetch])
   
     useEffect(()=>{
       // sort by favorite

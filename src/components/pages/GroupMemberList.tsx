@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useGetGroup } from '../../hooks/useGetGroup';
-import { useGetGroups } from '../../hooks/useGetGroups';
 import { IContact } from '../../interface';
 import Header from '../app/Header';
 import ContactList from '../ContactList';
 
 interface GroupMemberListProps {}
 
-const GroupMemberList: React.FC<GroupMemberListProps> = ({}) => {
+const GroupMemberList: React.FC<GroupMemberListProps> = () => {
 	let { id } = useParams<any>();
   const [members, setMembers] = useState<IContact[]>();
   const {data,loading} = useGetGroup(id);
@@ -24,6 +23,7 @@ const GroupMemberList: React.FC<GroupMemberListProps> = ({}) => {
           c.firstName.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
           c.lastName.toLowerCase().indexOf(value.toLowerCase()) !== -1
         ) return c
+        return null;
       })
       setMembers(searchFilter)
     }else{

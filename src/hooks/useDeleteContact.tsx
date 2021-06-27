@@ -1,6 +1,4 @@
-import { ApolloError, gql, useMutation } from '@apollo/client';
-
-interface IContactInput {}
+import { gql, useMutation } from '@apollo/client';
 
 const DELETE_CONTACT_MUTATION = gql`
 	mutation delete($id: ID!){

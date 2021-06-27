@@ -15,13 +15,13 @@ const MultiSelect: React.FC<MultiSelectProps> = ({options,setData}) => {
     }
 
     const removeItem = (id:string) => {
-        const newItems = selectedItems.filter(item => item != id);
+        const newItems = selectedItems.filter(item => item !== id);
         setselectedItems(newItems);
     }
 
     useEffect(() => {
         setData((cv:any) => ({ ...cv,groups: selectedItems }))
-    }, [selectedItems]);
+    }, [selectedItems,setData]);
 
 	return (
 		<div className="multiselect__container">
@@ -30,6 +30,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({options,setData}) => {
                     if(selectedItems.includes(id)){
                         return <span key={id} onClick={()=> removeItem(id)} className="item__selected">{name}</span>
                     }
+                    return null
                 })}
 			</div>
 
